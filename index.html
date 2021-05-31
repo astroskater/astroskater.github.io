@@ -111,6 +111,47 @@
           width: 100%;
         }
 
+        @media screen and (max-width: 736px) {
+          main {
+            padding: 1.5rem;
+            grid-template-areas: 
+              "title"
+              "logo"
+              "description"
+              "countdown";
+            grid-template-columns: 1fr;
+          }
+          main h1 {
+            font-size: 4rem;
+            justify-content: center;
+          }
+          main div {
+            font-size: 1.4rem;
+          }
+          main ul {
+              padding: 1.5rem 0;
+          }
+          main ul li {
+              font-size: 3rem;
+              padding: 1.5rem .5rem;
+          }
+          main ul li:first-child {
+              border-radius: .5rem 0 0 .5rem;
+          }
+          main ul li:last-child {
+              border-radius: 0 .5rem .5rem 0;
+          }
+            main ul li small {
+              font-size: .6rem;
+            }
+          main figure {
+            justify-content: center;
+
+          }
+            main figure img {
+              width: 70%;
+            }
+        }
     </style>
 
     <script>
