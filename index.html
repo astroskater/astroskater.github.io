@@ -35,6 +35,11 @@
 
     <style>
 
+      :root {
+        --primary-color: #4A0B5C;
+        --secondary-color: #9CCB00;
+        --token-name: "xxxx";
+      }
       * {
         margin: 0;
         padding: 0;
@@ -42,9 +47,12 @@
       html, body {
         width: 100%;
         height: 100%;
-        font-family: 'Odibee Sans', cursive;
-        color: #4A0B5C;
-        background-color: #9CCB00;
+        font-family: 'Odibee Sans', sans-serif;
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+      }
+      .hide {
+        display: none!important;
       }
       main {
         width: 100vw;
@@ -57,7 +65,7 @@
         grid-template-areas: 
           "title logo"
           "description logo"
-          "countdown logo";
+          "list logo";
         grid-template-columns: 55% auto;
       }
       main h1 {
@@ -74,16 +82,16 @@
         flex-flow: row;
       }
         main p a {
-          color: #4A0B5C;
+          color: var(--primary-color);
         }
       main ul {
-        grid-area: countdown;
+        grid-area: list;
         display: flex;
         align-items: flex-start;
         list-style: none;
       }
       main ul li {
-          background-color: #4A0B5C;
+          background-color: var(--primary-color);
           width: 25%;
           text-align: center;
           color: #fff;
@@ -100,6 +108,34 @@
           display: block;
           font-size: 1rem;
           text-transform: uppercase;
+        }
+      main ul.links {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 1rem;
+        z-index: 1;
+      }
+      main ul.links li {
+        width: auto;
+        font-size: 1.8rem;
+        flex: 1;
+        text-align: center;
+        border-radius: 1rem;
+        white-space: nowrap;
+        transition: box-shadow .2s;
+      }
+      main ul.links li:hover {
+        box-shadow: 0 0 2rem var(--primary-color);
+      }
+        main ul.links li a {
+          color: #fff;
+          text-decoration: none;
+        }
+        main ul.links li img {
+          display: block;
+          margin: 0 auto;
+          max-width: 50px;
         }
       main figure {
         grid-area: logo;
@@ -118,7 +154,7 @@
               "title"
               "logo"
               "description"
-              "countdown";
+              "list";
             grid-template-columns: 1fr;
           }
           main h1 {
@@ -127,6 +163,7 @@
           }
           main div {
             font-size: 1.4rem;
+            text-align: center;
           }
           main ul {
               padding: 1.5rem 0;
@@ -144,6 +181,9 @@
             main ul li small {
               font-size: .6rem;
             }
+          main ul.links li {
+            border-radius: 1rem;
+          }
           main figure {
             justify-content: center;
 
@@ -154,60 +194,42 @@
         }
     </style>
 
-    <script>
-      var countDownDate = new Date("May 31 2021 23:00:00 GMT-0000").getTime();
-
-      // Update the count down every 1 second
-      var x = setInterval(function() {
-
-        // Get today's date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById('days').innerHTML = days;
-        document.getElementById('hours').innerHTML = hours;
-        document.getElementById('minutes').innerHTML = minutes;
-        document.getElementById('seconds').innerHTML = seconds;
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById('days').innerHTML = '0';
-          document.getElementById('hours').innerHTML = '0';
-          document.getElementById('minutes').innerHTML = '0';
-          document.getElementById('seconds').innerHTML = '0';
-        }
-      }, 1000);
-    </script>
-
     <main>
 
       <h1>AstroSkater</h1>
 
       <div>
         <p>
-        Welcome to AstroSkater!<br>
-        Fair-launch at 05/31/2021 23h (UTC+0)
-        <br><br>
-        Airdrop for the first 200 members.  50% tokens burned, renounced ownership and locked liquidity.
-        <br><br>
-        Join us on Telegram at <a href="https://t.me/astroskater" target="_blank">https://t.me/astroskater</a>
+          Welcome to AstroSkater!<br>
+          Fair-launch at 05/31/2021 23h (UTC+0)
+          <br><br>
+          Airdrop for the first 200 members.  50% tokens burned, renounced ownership and locked liquidity.
+          <br><br>
+          Join us on Telegram at <a href="https://t.me/astroskater" target="_blank">https://t.me/astroskater</a>
         </p>
-    </div>
+      </div>
 
-      <ul>
+      <ul class="countdown">
         <li><span id="days">-</span><small>days</small></li>
         <li><span id="hours">-</span><small>hours</small></li>
         <li><span id="minutes">-</span><small>minutes</small></li>
         <li><span id="seconds">-</span><small>seconds</small></li>
+      </ul>
+
+      <ul class="links hide">
+        <li>
+          <a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xD85Afd5375F69A1264C73B1A60bb7d3Ddf9Aec89" target="_blank">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/200x200/7186.png">
+            buy on pancakeswap
+          </a>
+        </li>
+        <li>
+          <a href="https://poocoin.app/tokens/0xd85afd5375f69a1264c73b1a60bb7d3ddf9aec89" target="_blank">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/200x200/8978.png">
+            chart at poocoin
+          </a>
+        </li>
+        
       </ul>
 
       <figure>
@@ -215,5 +237,47 @@
       </figure>
 
     </main>
+
+    <script>
+      var countDownDate = new Date("May 31 2021 23:00:00 GMT-0000").getTime();
+
+      if (countDownDate - new Date().getTime() < 0) {
+        document.getElementsByClassName('countdown')[0].className = 'hide';
+        document.getElementsByClassName('links')[0].className = 'links';
+      } else {
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get today's date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById('days').innerHTML = days;
+          document.getElementById('hours').innerHTML = hours;
+          document.getElementById('minutes').innerHTML = minutes;
+          document.getElementById('seconds').innerHTML = seconds;
+
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById('days').innerHTML = '0';
+            document.getElementById('hours').innerHTML = '0';
+            document.getElementById('minutes').innerHTML = '0';
+            document.getElementById('seconds').innerHTML = '0';
+            document.getElementsByClassName('countdown')[0].className = 'hide';
+            document.getElementsByClassName('links')[0].className = 'links';
+          }
+        }, 1000);
+      }
+
+    </script>
 
 </html>
